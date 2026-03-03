@@ -20,7 +20,7 @@ public class HomesCommand implements CommandExecutor {
   @Override
   public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
     if (!(sender instanceof Player player)) {
-      plugin.messages().error(sender, "Only players can run this command.");
+      plugin.messages().error(sender, "Nur Spieler koennen diesen Befehl nutzen.");
       return true;
     }
 

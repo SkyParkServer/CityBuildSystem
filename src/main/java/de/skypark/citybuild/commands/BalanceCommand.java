@@ -24,13 +24,15 @@ public class BalanceCommand implements CommandExecutor {
 
       if (sender instanceof Player player) {
         if (!player.hasPermission("citybuild.admin.economy")) {
-          plugin.messages().error(player, "You cannot view other player balances.");
+          plugin
+              .messages()
+              .error(player, "Du darfst keine Kontostaende von anderen Spielern sehen.");
           return true;
         }
       }
     } else {
       if (!(sender instanceof Player player)) {
-        plugin.messages().error(sender, "Usage: /balance <player>");
+        plugin.messages().error(sender, "Nutze: /balance <Spieler>");
         return true;
       }
       target = player;
@@ -39,7 +41,7 @@ public class BalanceCommand implements CommandExecutor {
     double balance = plugin.money().balance(target);
     plugin
         .messages()
-        .message(sender, "&e" + target.getName() + "&7 has &6$" + (int) balance + "&7.");
+        .message(sender, "&e" + target.getName() + "&7 hat &6$" + (int) balance + "&7.");
     return true;
   }
 }

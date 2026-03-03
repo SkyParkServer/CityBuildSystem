@@ -61,24 +61,26 @@ public class WerbungCommand implements CommandExecutor {
     String serverName = plugin.getConfig().getString("server-name", "citybuild-1");
     werbungStore.setLastUsed(player.getUniqueId(), serverName, player.getLocation());
 
-    String border = "§6§lSkyPark §8» ------------------------------------------";
-    String empty = "§6§lSkyPark §8»";
-    String msgLine = "§6§lSkyPark §8» §7" + message;
+    String prefix = plugin.settings().prefix();
+    String border = prefix + " &7------------------------------------------";
+    String empty = prefix;
+    String msgLine = prefix + " &7" + message;
 
     for (Player online : Bukkit.getOnlinePlayers()) {
-      online.sendMessage(border);
-      online.sendMessage(empty);
-      online.sendMessage(msgLine);
-      online.sendMessage(empty);
+      online.sendMessage(plugin.messages().color(border));
+      online.sendMessage(plugin.messages().color(empty));
+      online.sendMessage(plugin.messages().color(msgLine));
+      online.sendMessage(plugin.messages().color(empty));
 
       TextComponent component =
-          new TextComponent("§6§lSkyPark §8» §bTeleportation §7(klickbar zum Plot)");
+          new TextComponent(
+              plugin.messages().color(prefix + " &bTeleportation &7(klickbar zum Plot)"));
       component.setClickEvent(
           new ClickEvent(ClickEvent.Action.RUN_COMMAND, "/werbungtp " + player.getUniqueId()));
       online.spigot().sendMessage(new ComponentBuilder(component).create());
 
-      online.sendMessage(empty);
-      online.sendMessage(border);
+      online.sendMessage(plugin.messages().color(empty));
+      online.sendMessage(plugin.messages().color(border));
     }
 
     plugin.messages().success(player, "Werbung wurde gesendet.");

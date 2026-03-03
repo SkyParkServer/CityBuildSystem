@@ -37,8 +37,7 @@ public class DelWarpCommand implements CommandExecutor {
       return true;
     }
 
-    player.sendMessage(
-        plugin.messages().color("§6§lSkyPark §8» §7Du hast den §b" + name + " §7geloescht."));
+    plugin.messages().message(player, "&7Du hast den &b" + name + " &7geloescht.");
     return true;
   }
 }

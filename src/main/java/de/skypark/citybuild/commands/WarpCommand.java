@@ -22,7 +22,7 @@ public class WarpCommand implements CommandExecutor {
       return true;
     }
     if (!player.hasPermission("cb.warp.warps")) {
-      player.sendMessage(plugin.messages().color("§6§lSkyPark §8» §7Du hast dazu keine Rechte!"));
+      plugin.messages().message(player, plugin.settings().noPermissionMessage());
       return true;
     }
     if (args.length < 1) {
@@ -39,10 +39,7 @@ public class WarpCommand implements CommandExecutor {
     }
 
     player.teleport(target);
-    player.sendMessage(
-        plugin
-            .messages()
-            .color("§6§lSkyPark §8» §7Du hast dich zu den §b" + name + " §7Teleportiert"));
+    plugin.messages().message(player, "&7Du hast dich zu den &b" + name + " &7teleportiert.");
     return true;
   }
 }

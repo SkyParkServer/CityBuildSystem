@@ -25,10 +25,10 @@ public class CbCommand implements CommandExecutor {
     String state = args.length >= 2 ? args[1].toLowerCase() : null;
 
     if (action == null) {
-      plugin.messages().message(sender, "&7CityBuild dev command");
-      plugin.messages().message(sender, "&8- &e/cb reload &7Reload all CityBuild scripts");
-      plugin.messages().message(sender, "&8- &e/cb debug <on|off|toggle> &7Set debug mode");
-      plugin.messages().message(sender, "&8- &e/cb info &7Show quick status");
+      plugin.messages().message(sender, "&7CityBuild Admin-Befehl");
+      plugin.messages().message(sender, "&8- &e/cb reload &7Laedt alle CityBuild-Skripte neu");
+      plugin.messages().message(sender, "&8- &e/cb debug <on|off|toggle> &7Setzt den Debug-Modus");
+      plugin.messages().message(sender, "&8- &e/cb info &7Zeigt den aktuellen Status");
       return true;
     }
 
@@ -40,7 +40,7 @@ public class CbCommand implements CommandExecutor {
         // Fallback: reload plugin config (best effort)
         plugin.reloadConfig();
       }
-      plugin.messages().success(sender, "Requested Skript reload for all scripts.");
+      plugin.messages().success(sender, "Skript-Reload fuer alle Skripte wurde ausgefuehrt.");
       return true;
     }
 
@@ -50,19 +50,19 @@ public class CbCommand implements CommandExecutor {
         plugin.globals().setDebugEnabled(!enabled);
         plugin
             .messages()
-            .success(sender, !enabled ? "Debug mode enabled." : "Debug mode disabled.");
+            .success(sender, !enabled ? "Debug-Modus aktiviert." : "Debug-Modus deaktiviert.");
         return true;
       }
 
       if (state.equals("on")) {
         plugin.globals().setDebugEnabled(true);
-        plugin.messages().success(sender, "Debug mode enabled.");
+        plugin.messages().success(sender, "Debug-Modus aktiviert.");
         return true;
       }
 
       if (state.equals("off")) {
         plugin.globals().setDebugEnabled(false);
-        plugin.messages().success(sender, "Debug mode disabled.");
+        plugin.messages().success(sender, "Debug-Modus deaktiviert.");
         return true;
       }
 
@@ -71,11 +71,11 @@ public class CbCommand implements CommandExecutor {
         plugin.globals().setDebugEnabled(!enabled);
         plugin
             .messages()
-            .success(sender, !enabled ? "Debug mode enabled." : "Debug mode disabled.");
+            .success(sender, !enabled ? "Debug-Modus aktiviert." : "Debug-Modus deaktiviert.");
         return true;
       }
 
-      plugin.messages().error(sender, "Usage: /cb debug <on|off|toggle>");
+      plugin.messages().error(sender, "Nutze: /cb debug <on|off|toggle>");
       return true;
     }
 
@@ -85,14 +85,14 @@ public class CbCommand implements CommandExecutor {
           plugin.globals().spawnLocationText() != null
               && !plugin.globals().spawnLocationText().isEmpty();
       if (spawnSet) {
-        plugin.messages().message(sender, "&7Spawn: &aconfigured");
+        plugin.messages().message(sender, "&7Spawn: &agesetzt");
       } else {
-        plugin.messages().message(sender, "&7Spawn: &cnot configured");
+        plugin.messages().message(sender, "&7Spawn: &cnicht gesetzt");
       }
       return true;
     }
 
-    plugin.messages().error(sender, "Unknown subcommand. Use /cb");
+    plugin.messages().error(sender, "Unbekannter Unterbefehl. Nutze /cb");
     return true;
   }
 }

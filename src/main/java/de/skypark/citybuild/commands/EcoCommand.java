@@ -16,9 +16,8 @@ public class EcoCommand implements CommandExecutor {
 
   @Override
   public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-    // Usage: /eco <add|set|take> <player> <amount>
     if (args.length < 3) {
-      plugin.messages().error(sender, "Usage: /eco <add|set|take> <player> <amount>");
+      plugin.messages().error(sender, "Nutze: /eco <add|set|take> <Spieler> <Betrag>");
       return true;
     }
 
@@ -29,7 +28,7 @@ public class EcoCommand implements CommandExecutor {
     try {
       amount = Integer.parseInt(args[2]);
     } catch (NumberFormatException ex) {
-      plugin.messages().error(sender, "Usage: /eco <add|set|take> <player> <amount>");
+      plugin.messages().error(sender, "Nutze: /eco <add|set|take> <Spieler> <Betrag>");
       return true;
     }
 
@@ -37,7 +36,8 @@ public class EcoCommand implements CommandExecutor {
       plugin.money().addMoney(target, amount);
       plugin
           .messages()
-          .success(sender, "Added &6$" + amount + "&a to &e" + target.getName() + "&a.");
+          .success(
+              sender, "&6$" + amount + "&a wurden zu &e" + target.getName() + "&a hinzugefuegt.");
       return true;
     }
 
@@ -45,22 +45,28 @@ public class EcoCommand implements CommandExecutor {
       plugin.money().setMoney(target, amount);
       plugin
           .messages()
-          .success(sender, "Set balance of &e" + target.getName() + "&a to &6$" + amount + "&a.");
+          .success(
+              sender,
+              "Der Kontostand von &e"
+                  + target.getName()
+                  + "&a wurde auf &6$"
+                  + amount
+                  + "&a gesetzt.");
       return true;
     }
 
     if (action.equals("take")) {
       if (!plugin.money().takeMoney(target, amount)) {
-        plugin.messages().error(sender, "Player has not enough money.");
+        plugin.messages().error(sender, "Der Spieler hat nicht genug Geld.");
         return true;
       }
       plugin
           .messages()
-          .success(sender, "Removed &6$" + amount + "&a from &e" + target.getName() + "&a.");
+          .success(sender, "&6$" + amount + "&a wurden von &e" + target.getName() + "&a entfernt.");
       return true;
     }
 
-    plugin.messages().error(sender, "Usage: /eco <add|set|take> <player> <amount>");
+    plugin.messages().error(sender, "Nutze: /eco <add|set|take> <Spieler> <Betrag>");
     return true;
   }
 }

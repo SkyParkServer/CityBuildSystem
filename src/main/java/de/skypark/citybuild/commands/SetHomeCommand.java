@@ -20,7 +20,7 @@ public class SetHomeCommand implements CommandExecutor {
   @Override
   public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
     if (!(sender instanceof Player player)) {
-      plugin.messages().error(sender, "Only players can run this command.");
+      plugin.messages().error(sender, "Nur Spieler koennen diesen Befehl nutzen.");
       return true;
     }
 
@@ -30,7 +30,7 @@ public class SetHomeCommand implements CommandExecutor {
     }
 
     if (args.length < 1) {
-      plugin.messages().error(player, "Usage: /sethome <name>");
+      plugin.messages().error(player, "Nutze: /sethome <name>");
       return true;
     }
 
@@ -39,7 +39,8 @@ public class SetHomeCommand implements CommandExecutor {
       plugin
           .messages()
           .error(
-              player, "Home names must be 1-16 chars and cannot contain spaces or path symbols.");
+              player,
+              "Home-Namen muessen 1-16 Zeichen lang sein und duerfen keine Leer- oder Pfadzeichen enthalten.");
       return true;
     }
 
@@ -48,14 +49,14 @@ public class SetHomeCommand implements CommandExecutor {
       int current = homes.count(player);
       int limit = homes.totalLimit(player);
       if (current >= limit) {
-        plugin.messages().error(player, "You reached your home limit (&e" + limit + "&c).");
+        plugin.messages().error(player, "Du hast dein Home-Limit erreicht (&e" + limit + "&c).");
         return true;
       }
     }
 
     homes.saveHome(player, homeName);
     homes.refreshNameCache(player);
-    plugin.messages().success(player, "Home &e" + homeName + "&a saved.");
+    plugin.messages().success(player, "Home &e" + homeName + "&a wurde gesetzt.");
     return true;
   }
 }

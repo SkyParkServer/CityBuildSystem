@@ -47,7 +47,7 @@ public class HomeGuiListener implements Listener {
       if (homeName != null && !homeName.isEmpty()) {
         if (event.getClick() == ClickType.RIGHT) {
           if (!player.hasPermission("cb.home.del.use")) {
-            plugin.messages().error(player, "You do not have permission to delete homes.");
+            plugin.messages().error(player, "Du hast keine Rechte, um Homes zu loeschen.");
             return;
           }
           homes.openDeleteMenu(player, homeName);
@@ -55,7 +55,7 @@ public class HomeGuiListener implements Listener {
         }
 
         if (!player.hasPermission("cb.home.home")) {
-          plugin.messages().error(player, "You do not have permission to teleport to homes.");
+          plugin.messages().error(player, "Du hast keine Rechte, um zu Homes zu teleportieren.");
           return;
         }
 
@@ -97,7 +97,7 @@ public class HomeGuiListener implements Listener {
         if (homeName != null && !homeName.isEmpty()) {
           homes.deleteHome(player, homeName);
           homes.refreshNameCache(player);
-          plugin.messages().success(player, "Home &e" + homeName + "&a deleted.");
+          plugin.messages().success(player, "Home &e" + homeName + "&a wurde geloescht.");
         }
         homes.openMainMenu(player);
         return;
@@ -120,20 +120,20 @@ public class HomeGuiListener implements Listener {
       int purchased = homes.purchased(player);
       int maxBuyable = homes.maxBuyable(player);
       if (purchased >= maxBuyable) {
-        plugin.messages().error(player, "You reached your buy limit for additional homes.");
+        plugin.messages().error(player, "Du hast dein Kauf-Limit fuer weitere Homes erreicht.");
         homes.openBuyMenu(player);
         return;
       }
 
       int price = homes.nextPrice(player);
       if (plugin.money().balance(player) < price) {
-        plugin.messages().error(player, "You need &6$" + price + "&c to buy the next home.");
+        plugin.messages().error(player, "Du brauchst &6$" + price + "&c fuer das naechste Home.");
         homes.openBuyMenu(player);
         return;
       }
 
       if (!plugin.money().takeMoney(player, price)) {
-        plugin.messages().error(player, "Payment failed.");
+        plugin.messages().error(player, "Bezahlung fehlgeschlagen.");
         homes.openBuyMenu(player);
         return;
       }
@@ -141,7 +141,7 @@ public class HomeGuiListener implements Listener {
       homes.setPurchased(player, purchased + 1);
       plugin
           .messages()
-          .success(player, "You bought 1 additional home slot for &6$" + price + "&a.");
+          .success(player, "Du hast 1 zusaetzlichen Home-Slot fuer &6$" + price + "&a gekauft.");
       homes.openMainMenu(player);
     }
   }

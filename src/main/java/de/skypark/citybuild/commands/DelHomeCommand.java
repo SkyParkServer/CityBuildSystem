@@ -20,7 +20,7 @@ public class DelHomeCommand implements CommandExecutor {
   @Override
   public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
     if (!(sender instanceof Player player)) {
-      plugin.messages().error(sender, "Only players can run this command.");
+      plugin.messages().error(sender, "Nur Spieler koennen diesen Befehl nutzen.");
       return true;
     }
 
@@ -30,7 +30,7 @@ public class DelHomeCommand implements CommandExecutor {
     }
 
     if (args.length < 1) {
-      plugin.messages().error(player, "Usage: /delhome <name>");
+      plugin.messages().error(player, "Nutze: /delhome <name>");
       return true;
     }
 
@@ -39,18 +39,19 @@ public class DelHomeCommand implements CommandExecutor {
       plugin
           .messages()
           .error(
-              player, "Home names must be 1-16 chars and cannot contain spaces or path symbols.");
+              player,
+              "Home-Namen muessen 1-16 Zeichen lang sein und duerfen keine Leer- oder Pfadzeichen enthalten.");
       return true;
     }
 
     if (!homes.exists(player, homeName)) {
-      plugin.messages().error(player, "Home &e" + homeName + "&c does not exist.");
+      plugin.messages().error(player, "Home &e" + homeName + "&c existiert nicht.");
       return true;
     }
 
     homes.deleteHome(player, homeName);
     homes.refreshNameCache(player);
-    plugin.messages().success(player, "Home &e" + homeName + "&a deleted.");
+    plugin.messages().success(player, "Home &e" + homeName + "&a wurde geloescht.");
     return true;
   }
 }

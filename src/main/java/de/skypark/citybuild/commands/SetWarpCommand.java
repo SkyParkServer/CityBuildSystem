@@ -32,8 +32,7 @@ public class SetWarpCommand implements CommandExecutor {
     String name = args[0].toLowerCase();
     String serverName = plugin.getConfig().getString("server-name", "citybuild-1");
     plugin.warpStore().setWarp(serverName, name, player.getLocation());
-    player.sendMessage(
-        plugin.messages().color("§6§lSkyPark §8» §7Du hast den §b" + name + " §7gesetzt."));
+    plugin.messages().message(player, "&7Du hast den &b" + name + " &7gesetzt.");
     return true;
   }
 }

@@ -20,7 +20,7 @@ public class HomeCommand implements CommandExecutor {
   @Override
   public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
     if (!(sender instanceof Player player)) {
-      plugin.messages().error(sender, "Only players can run this command.");
+      plugin.messages().error(sender, "Nur Spieler koennen diesen Befehl nutzen.");
       return true;
     }
 
@@ -35,12 +35,13 @@ public class HomeCommand implements CommandExecutor {
         plugin
             .messages()
             .error(
-                player, "Home names must be 1-16 chars and cannot contain spaces or path symbols.");
+                player,
+                "Home-Namen muessen 1-16 Zeichen lang sein und duerfen keine Leer- oder Pfadzeichen enthalten.");
         return true;
       }
 
       if (!player.hasPermission("cb.home.home")) {
-        plugin.messages().error(player, "You do not have permission to teleport to homes.");
+        plugin.messages().error(player, "Du hast keine Rechte, um zu Homes zu teleportieren.");
         return true;
       }
 

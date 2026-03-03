@@ -230,13 +230,13 @@ public class HomeService {
       ps.setString(3, homeName);
       try (ResultSet rs = ps.executeQuery()) {
         if (!rs.next()) {
-          plugin.messages().error(target, "Home &e" + homeName + "&c does not exist.");
+          plugin.messages().error(target, "Home &e" + homeName + "&c existiert nicht.");
           return;
         }
         String worldName = rs.getString(1);
         World world = Bukkit.getWorld(worldName);
         if (world == null) {
-          plugin.messages().error(target, "World &e" + worldName + "&c is not loaded.");
+          plugin.messages().error(target, "Welt &e" + worldName + "&c ist nicht geladen.");
           return;
         }
         Location loc =
@@ -248,7 +248,7 @@ public class HomeService {
                 rs.getFloat(5),
                 rs.getFloat(6));
         target.teleport(loc);
-        plugin.messages().success(target, "Teleported to home &e" + homeName + "&a.");
+        plugin.messages().success(target, "Teleportiert zu Home &e" + homeName + "&a.");
       }
     } catch (SQLException e) {
       e.printStackTrace();
@@ -393,7 +393,7 @@ public class HomeService {
 
   public void openDeleteMenu(Player target, String homeName) {
     if (!exists(target, homeName)) {
-      plugin.messages().error(target, "Home &e" + homeName + "&c does not exist.");
+      plugin.messages().error(target, "Home &e" + homeName + "&c existiert nicht.");
       openMainMenu(target);
       return;
     }

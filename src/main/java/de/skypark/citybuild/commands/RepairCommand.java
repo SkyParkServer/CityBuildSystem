@@ -16,7 +16,7 @@ public class RepairCommand implements CommandExecutor {
   @Override
   public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
     if (!(sender instanceof Player player)) {
-      plugin.messages().error(sender, "Only players can run this command.");
+      plugin.messages().error(sender, "Nur Spieler koennen diesen Befehl nutzen.");
       return true;
     }
 
@@ -27,7 +27,7 @@ public class RepairCommand implements CommandExecutor {
 
     ItemStack tool = player.getInventory().getItemInMainHand();
     if (tool == null || tool.getType().isAir()) {
-      plugin.messages().error(player, "Hold an item in your hand first.");
+      plugin.messages().error(player, "Du musst zuerst ein Item in der Hand halten.");
       return true;
     }
 
@@ -37,7 +37,7 @@ public class RepairCommand implements CommandExecutor {
     }
 
     player.getInventory().setItemInMainHand(tool);
-    plugin.messages().success(player, "Your item has been fully repaired.");
+    plugin.messages().success(player, "Dein Item wurde vollstaendig repariert.");
     return true;
   }
 }
