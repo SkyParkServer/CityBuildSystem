@@ -59,6 +59,10 @@ commands:
   tresor:
     description: Open shared multi-page vault (MySQL)
     permission: cb.tresor.use
+  vanish:
+    description: Toggle vanish mode
+    aliases: [v]
+    permission: ch.vanish.use
   speed:
     description: Set your movement speed (2-10)
     permission: cb.speed.use

@@ -64,7 +64,15 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create "${GITHUB_REF_NAME}" \
-            build/libs/*.jar \
-            --title "${GITHUB_REF_NAME}" \
-            --notes-file RELEASE_NOTES.md
+          if gh release view "${GITHUB_REF_NAME}" >/dev/null 2>&1; then
+            echo "Release ${GITHUB_REF_NAME} existiert bereits - aktualisiere Assets und Notes."
+            gh release upload "${GITHUB_REF_NAME}" build/libs/*.jar --clobber
+            gh release edit "${GITHUB_REF_NAME}" \
+              --title "${GITHUB_REF_NAME}" \
+              --notes-file RELEASE_NOTES.md
+          else
+            gh release create "${GITHUB_REF_NAME}" \
+              build/libs/*.jar \
+              --title "${GITHUB_REF_NAME}" \
+              --notes-file RELEASE_NOTES.md
+          fi

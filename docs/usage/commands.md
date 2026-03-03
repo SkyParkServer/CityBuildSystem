@@ -13,6 +13,7 @@ Die Command-Referenz ist nach Rollen aufgeteilt.
 | `/hat` | Item aus Hand als Helm | `cb.hat.use` |
 | `/ec`, `/enderchest` | Serveruebergreifende Enderchest | `cb.enderchest.use` |
 | `/tresor` | Serveruebergreifender Tresor (8 Seiten) | `cb.tresor.use` |
+| `/v`, `/vanish` | Eigenen Vanish toggeln | `ch.vanish.use` |
 | `/speed <1-10>` | Lauf-/Fluggeschwindigkeit | `cb.speed.use` |
 
 ### Tresor Permissions
@@ -56,6 +57,7 @@ Die Command-Referenz ist nach Rollen aufgeteilt.
 | Command | Beschreibung | Permission |
 |---|---|---|
 | `/invsee <spieler>` | Inventar einsehen | `cb.invsee.use` |
+| `/vanish <spieler>` | Spieler in Vanish setzen | `ch.vanish.use` |
 | `/near` | Spieler in Naehe auflisten | `cb.near.use` |
 | `/feed [spieler]` | Hunger auffuellen | `cb.feed.use`, `cb.feed.other` |
 | `/heal [spieler]` | Heilen | `cb.heal.use`, `cb.heal.other.use` |

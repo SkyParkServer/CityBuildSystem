@@ -4,7 +4,6 @@ import de.skypark.citybuild.CityBuildSystem;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -53,14 +52,14 @@ public abstract class AbstractCommand implements CommandExecutor, TabCompleter {
     if (args.length != 1) {
       return List.of();
     }
-    String prefix = args[0].toLowerCase();
-    List<String> result = new ArrayList<>();
-    for (Player online : Bukkit.getOnlinePlayers()) {
-      if (online.getName().toLowerCase().startsWith(prefix)) {
-        result.add(online.getName());
-      }
+    return plugin.vanishService().visibleOnlineNames(null, args[0]);
+  }
+
+  protected final List<String> completeOnlinePlayers(CommandSender sender, String[] args) {
+    if (args.length != 1) {
+      return List.of();
     }
-    return result;
+    return plugin.vanishService().visibleOnlineNames(sender, args[0]);
   }
 
   @Override

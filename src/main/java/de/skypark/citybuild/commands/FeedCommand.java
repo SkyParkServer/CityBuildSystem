@@ -3,7 +3,6 @@ package de.skypark.citybuild.commands;
 import de.skypark.citybuild.CityBuildSystem;
 import de.skypark.citybuild.commands.framework.AbstractCommand;
 import java.util.List;
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -21,7 +20,7 @@ public class FeedCommand extends AbstractCommand {
         plugin.messages().error(sender, "Du hast dazu keine Rechte!");
         return true;
       }
-      Player target = Bukkit.getPlayerExact(args[0]);
+      Player target = plugin.vanishService().findVisiblePlayer(sender, args[0]);
       if (target == null) {
         plugin.messages().error(sender, "Spieler ist nicht online.");
         return true;
@@ -50,6 +49,6 @@ public class FeedCommand extends AbstractCommand {
   @Override
   public List<String> onTabComplete(
       CommandSender sender, Command command, String alias, String[] args) {
-    return completeOnlinePlayers(args);
+    return completeOnlinePlayers(sender, args);
   }
 }

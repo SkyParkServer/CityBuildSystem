@@ -35,6 +35,9 @@ public class NearCommand implements CommandExecutor {
       if (online.getUniqueId().equals(player.getUniqueId())) {
         continue;
       }
+      if (!plugin.vanishService().isVisibleTo(player, online)) {
+        continue;
+      }
       double distance = base.distance(online.getLocation());
       if (distance <= 200.0D) {
         nearby.add(online.getName() + " (&e" + (int) distance + "m&7)");

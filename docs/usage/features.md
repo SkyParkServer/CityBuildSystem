@@ -8,6 +8,7 @@
 - Hat-System (Item als Helm)
 - Speed-Control (1-10)
 - Tresor-System mit 8 Seiten (`/tresor`)
+- Vanish-System (`/v`, `/vanish`)
 
 ## Homes, Spawn und Warps
 
@@ -32,11 +33,20 @@
 - `invsee` mit Read-only Modus
 - `near` zur Umfeld-Analyse
 - `feed`/`heal` fuer Self und Other
+- Vanish blendet Spieler komplett aus (inkl. Tablist, Equipment und Hand-Items)
 
 ## Netzwerk-Sync
 
 - Enderchest, Tresor, PM-Zustand und weitere Stores datenbankbasiert
 - Keine Cache-Schicht fuer spielrelevante Werte
+
+## Vanish Details
+
+- `/v` oder `/vanish` toggelt den eigenen Vanish-Status
+- `/vanish <spieler>` setzt einen sichtbaren Spieler in Vanish
+- Permission: `ch.vanish.use`
+- Vanished Spieler sind fuer andere nicht sichtbar und nicht targetbar
+- Auch OP bzw. `*` sehen Vanish-Spieler nicht
 
 ## Tresor Details
 

@@ -14,6 +14,7 @@ import de.skypark.citybuild.core.HomeService;
 import de.skypark.citybuild.core.MessageManager;
 import de.skypark.citybuild.core.SpawnManager;
 import de.skypark.citybuild.core.TresorService;
+import de.skypark.citybuild.core.VanishService;
 import de.skypark.citybuild.listeners.GlobalSpawnListener;
 import de.skypark.citybuild.listeners.HomeGuiListener;
 import de.skypark.citybuild.listeners.HomeJoinListener;
@@ -25,6 +26,7 @@ import de.skypark.citybuild.listeners.RainbowArmorListener;
 import de.skypark.citybuild.listeners.SharedEnderChestListener;
 import de.skypark.citybuild.listeners.TablistJoinListener;
 import de.skypark.citybuild.listeners.TresorListener;
+import de.skypark.citybuild.listeners.VanishVisibilityListener;
 import de.skypark.citybuild.storage.*;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import io.papermc.paper.command.brigadier.Commands;
@@ -56,6 +58,7 @@ public class CityBuildSystem extends JavaPlugin {
   private CooldownStore cooldowns;
   private PlayerDataStore playerData;
   private SpawnManager spawnManager;
+  private VanishService vanishService;
 
   private EnderChestStore enderChestStore;
   private TresorStore tresorStore;
@@ -87,6 +90,7 @@ public class CityBuildSystem extends JavaPlugin {
     this.cooldowns = new CooldownStore(data);
     this.playerData = new PlayerDataStore(data, settings);
     this.spawnManager = new SpawnManager(this);
+    this.vanishService = new VanishService(this);
 
     this.enderChestStore = new EnderChestStore(data);
     this.tresorStore = new TresorStore(data);
@@ -115,6 +119,7 @@ public class CityBuildSystem extends JavaPlugin {
     getServer().getPluginManager().registerEvents(new MessagingJoinListener(this), this);
     getServer().getPluginManager().registerEvents(new TablistJoinListener(this), this);
     getServer().getPluginManager().registerEvents(new LuckPermsUpdateListener(this), this);
+    getServer().getPluginManager().registerEvents(new VanishVisibilityListener(this), this);
 
     // Commands - spawn
     registerCommand("setspawn", new SetSpawnCommand(this));
@@ -142,6 +147,7 @@ public class CityBuildSystem extends JavaPlugin {
     registerCommand("enderchest", ec);
     registerCommand("ec", ec);
     registerCommand("tresor", new TresorCommand(this, tresorService));
+    registerCommand("vanish", new VanishCommand(this));
     registerCommand("speed", new SpeedCommand(this));
     registerCommand("hat", new HatCommand(this));
     registerCommand("setwarp", new SetWarpCommand(this));
@@ -316,7 +322,7 @@ public class CityBuildSystem extends JavaPlugin {
     return Commands.literal(binding.command().getName())
         .then(
             Commands.argument("spieler", StringArgumentType.word())
-                .suggests((ctx, builder) -> suggestOnlinePlayers(builder))
+                .suggests((ctx, builder) -> suggestOnlinePlayers(ctx, builder))
                 .executes(
                     ctx -> executeBrigadier(ctx, binding, new String[] {getString(ctx, "spieler")}))
                 .then(
@@ -349,7 +355,7 @@ public class CityBuildSystem extends JavaPlugin {
         .executes(ctx -> executeBrigadier(ctx, binding, new String[0]))
         .then(
             Commands.argument("spieler", StringArgumentType.word())
-                .suggests((ctx, builder) -> suggestOnlinePlayers(builder))
+                .suggests((ctx, builder) -> suggestOnlinePlayers(ctx, builder))
                 .executes(
                     ctx ->
                         executeBrigadier(ctx, binding, new String[] {getString(ctx, "spieler")})))
@@ -362,7 +368,7 @@ public class CityBuildSystem extends JavaPlugin {
         .executes(ctx -> executeBrigadier(ctx, binding, new String[0]))
         .then(
             Commands.argument("spieler", StringArgumentType.word())
-                .suggests((ctx, builder) -> suggestOnlinePlayers(builder))
+                .suggests((ctx, builder) -> suggestOnlinePlayers(ctx, builder))
                 .executes(
                     ctx ->
                         executeBrigadier(ctx, binding, new String[] {getString(ctx, "spieler")})))
@@ -374,7 +380,7 @@ public class CityBuildSystem extends JavaPlugin {
     return Commands.literal(binding.command().getName())
         .then(
             Commands.argument("spieler", StringArgumentType.word())
-                .suggests((ctx, builder) -> suggestOnlinePlayers(builder))
+                .suggests((ctx, builder) -> suggestOnlinePlayers(ctx, builder))
                 .executes(
                     ctx ->
                         executeBrigadier(ctx, binding, new String[] {getString(ctx, "spieler")})))
@@ -497,7 +503,7 @@ public class CityBuildSystem extends JavaPlugin {
         .executes(ctx -> executeBrigadier(ctx, binding, new String[0]))
         .then(
             Commands.argument("spieler", StringArgumentType.word())
-                .suggests((ctx, builder) -> suggestOnlinePlayers(builder))
+                .suggests((ctx, builder) -> suggestOnlinePlayers(ctx, builder))
                 .executes(
                     ctx ->
                         executeBrigadier(ctx, binding, new String[] {getString(ctx, "spieler")})))
@@ -518,7 +524,7 @@ public class CityBuildSystem extends JavaPlugin {
     return Commands.literal(action)
         .then(
             Commands.argument("spieler", StringArgumentType.word())
-                .suggests((ctx, builder) -> suggestOnlinePlayers(builder))
+                .suggests((ctx, builder) -> suggestOnlinePlayers(ctx, builder))
                 .then(
                     Commands.argument("betrag", IntegerArgumentType.integer())
                         .executes(
@@ -538,7 +544,7 @@ public class CityBuildSystem extends JavaPlugin {
     return Commands.literal(binding.command().getName())
         .then(
             Commands.argument("spieler", StringArgumentType.word())
-                .suggests((ctx, builder) -> suggestOnlinePlayers(builder))
+                .suggests((ctx, builder) -> suggestOnlinePlayers(ctx, builder))
                 .executes(
                     ctx ->
                         executeBrigadier(ctx, binding, new String[] {getString(ctx, "spieler")})))
@@ -546,7 +552,7 @@ public class CityBuildSystem extends JavaPlugin {
             Commands.literal("reset")
                 .then(
                     Commands.argument("spieler", StringArgumentType.word())
-                        .suggests((ctx, builder) -> suggestOnlinePlayers(builder))
+                        .suggests((ctx, builder) -> suggestOnlinePlayers(ctx, builder))
                         .executes(
                             ctx ->
                                 executeBrigadier(
@@ -557,7 +563,7 @@ public class CityBuildSystem extends JavaPlugin {
             Commands.literal("give")
                 .then(
                     Commands.argument("spieler", StringArgumentType.word())
-                        .suggests((ctx, builder) -> suggestOnlinePlayers(builder))
+                        .suggests((ctx, builder) -> suggestOnlinePlayers(ctx, builder))
                         .then(
                             Commands.argument("betrag", IntegerArgumentType.integer())
                                 .executes(
@@ -574,7 +580,7 @@ public class CityBuildSystem extends JavaPlugin {
             Commands.literal("set")
                 .then(
                     Commands.argument("spieler", StringArgumentType.word())
-                        .suggests((ctx, builder) -> suggestOnlinePlayers(builder))
+                        .suggests((ctx, builder) -> suggestOnlinePlayers(ctx, builder))
                         .then(
                             Commands.argument("betrag", IntegerArgumentType.integer())
                                 .executes(
@@ -692,13 +698,12 @@ public class CityBuildSystem extends JavaPlugin {
   }
 
   private java.util.concurrent.CompletableFuture<com.mojang.brigadier.suggestion.Suggestions>
-      suggestOnlinePlayers(com.mojang.brigadier.suggestion.SuggestionsBuilder builder) {
+      suggestOnlinePlayers(
+          CommandContext<CommandSourceStack> context,
+          com.mojang.brigadier.suggestion.SuggestionsBuilder builder) {
     String prefix = builder.getRemainingLowerCase();
-    for (Player online : getServer().getOnlinePlayers()) {
-      String name = online.getName();
-      if (name.toLowerCase().startsWith(prefix)) {
-        builder.suggest(name);
-      }
+    for (String name : vanishService.visibleOnlineNames(context.getSource().getSender(), prefix)) {
+      builder.suggest(name);
     }
     return builder.buildFuture();
   }

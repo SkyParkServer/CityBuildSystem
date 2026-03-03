@@ -13,6 +13,7 @@
 1. Version im Build setzen
 2. Tag erzeugen (`vX.Y.Z`)
 3. `release.yml` erzeugt Release inklusive Changelog aus Commits
+4. Falls ein Release mit demselben Tag bereits existiert, werden Assets/Notes aktualisiert (kein Hard-Fail)
 
 ## Docs-Deployment
 

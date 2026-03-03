@@ -10,6 +10,7 @@ Kurze Referenz der wichtigsten Commands.
 - `/wetter <regen|gewitter|sonne>`
 - `/hat`
 - `/tresor`
+- `/v`, `/vanish`
 
 ## Homes / Teleport
 

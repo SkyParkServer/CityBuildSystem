@@ -81,6 +81,11 @@ public class CbCommand implements CommandExecutor {
 
     if (action.equals("info")) {
       plugin.messages().message(sender, "&7Debug: &e" + plugin.globals().debugEnabled());
+      plugin
+          .messages()
+          .message(
+              sender,
+              "&7Sichtbare Spieler: &e" + plugin.vanishService().visibleOnlineCount(sender));
       boolean spawnSet =
           plugin.globals().spawnLocationText() != null
               && !plugin.globals().spawnLocationText().isEmpty();
