@@ -1,9 +1,11 @@
 name: CityBuildSystem
-version: 1.0.5-mysql-rainbow
+version: ${version}
 main: de.skypark.citybuild.CityBuildSystem
 api-version: 1.21
 depend: [Vault]
 softdepend: [LuckPerms, PlotSquared]
+libraries:
+  - com.mysql:mysql-connector-j:8.4.0
 
 commands:
   cb:
@@ -16,7 +18,7 @@ commands:
     description: Teleport to spawn (CityBuildSystem)
   home:
     description: Open homes menu or teleport to a home
-    permission: cb.spawn.use
+    permission: cb.home.use
   homes:
     description: Open homes menu
     permission: cb.home.use
@@ -28,6 +30,7 @@ commands:
     permission: cb.home.del.use
   balance:
     description: Show balance
+    aliases: [money]
   eco:
     description: Economy admin command
     permission: citybuild.admin.economy
@@ -108,4 +111,3 @@ commands:
   regenbogen:
     description: Toggle rainbow armor
     permission: cb.regenbogen.use
-

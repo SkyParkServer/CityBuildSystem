@@ -1,6 +1,6 @@
 const:
-  prefix: "&8[&6CityBuild&8]&r"
-  no-perm: "&cYou do not have permission for this command."
+  prefix: "&6&lSkyPark &8»"
+  no-perm: "&7Du hast dazu keine Rechte!"
   default-spawn-cooldown-seconds: 5
   default-home-limit: 1
 
@@ -19,4 +19,3 @@ mysql:
   password: "password"
   useSSL: false
 server-name: "server-a"
-

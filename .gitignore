@@ -2,3 +2,7 @@
 /server/*
 !/server/.gitkeep
 /server-db/
+/.gradle/
+/build/
+/run/
+AGENTS.md

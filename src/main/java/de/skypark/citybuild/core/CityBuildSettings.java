@@ -19,8 +19,8 @@ public class CityBuildSettings {
         FileConfiguration c = plugin.getConfig();
 
         // Skript on load constants:
-        c.addDefault("const.prefix", "&8[&6CityBuild&8]&r");
-        c.addDefault("const.no-perm", "&cYou do not have permission for this command.");
+        c.addDefault("const.prefix", "&6&lSkyPark &8»");
+        c.addDefault("const.no-perm", "&7Du hast dazu keine Rechte!");
         c.addDefault("const.default-spawn-cooldown-seconds", 5);
         c.addDefault("const.default-home-limit", 1);
 
@@ -33,11 +33,11 @@ public class CityBuildSettings {
     }
 
     public String prefix() {
-        return plugin.getConfig().getString("const.prefix", "&8[&6CityBuild&8]&r");
+        return plugin.getConfig().getString("const.prefix", "&6&lSkyPark &8»");
     }
 
     public String noPermissionMessage() {
-        return plugin.getConfig().getString("const.no-perm", "&cYou do not have permission for this command.");
+        return plugin.getConfig().getString("const.no-perm", "&7Du hast dazu keine Rechte!");
     }
 
     public int spawnCooldownSeconds() {

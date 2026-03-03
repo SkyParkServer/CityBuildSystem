@@ -1,0 +1,16 @@
+[versions]
+paper = "1.21.11-R0.1-SNAPSHOT"
+minecraft = "1.21.11"
+luckperms = "5.4"
+vault = "1.7.1"
+freefair-lombok = "8.6"
+run-paper = "2.3.1"
+
+[libraries]
+paper-api = { module = "io.papermc.paper:paper-api", version.ref = "paper" }
+luckperms-api = { module = "net.luckperms:api", version.ref = "luckperms" }
+vault-api = { module = "com.github.MilkBowl:VaultAPI", version.ref = "vault" }
+
+[plugins]
+freefair-lombok = { id = "io.freefair.lombok", version.ref = "freefair-lombok" }
+run-paper = { id = "xyz.jpenilla.run-paper", version.ref = "run-paper" }

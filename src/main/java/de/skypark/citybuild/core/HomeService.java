@@ -394,4 +394,8 @@ public class HomeService {
         guiSlotLocked.remove(u);
         deleteTarget.remove(u);
     }
+
+    public void refreshNameCache(Player player) {
+        // Kein Cache aktiv: Daten werden direkt aus MySQL gelesen.
+    }
 }
