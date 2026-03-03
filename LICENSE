@@ -1,0 +1,40 @@
+CityBuildSystem Private Source License v1.0
+
+Copyright (c) 2026 SkyParkServer
+All rights reserved.
+
+1. Purpose
+This repository is provided only for private collaboration on GitHub.
+
+2. No usage rights
+No license is granted to use, execute, copy, modify, merge, publish, distribute,
+sublicense, sell, rent, host, or otherwise exploit this software, in whole or in
+part, for any commercial or private purpose.
+
+3. Allowed contribution exception
+Notwithstanding Section 2, authorized collaborators may:
+  a) view and clone this repository solely to prepare contribution changes,
+  b) create branches/forks as technically required for contribution,
+  c) submit pull requests to this repository.
+
+Any use beyond preparing and submitting pull requests is prohibited unless the
+copyright holder grants prior written permission.
+
+4. Contribution ownership
+By submitting a pull request, you grant the copyright holder a perpetual,
+worldwide, irrevocable, royalty-free right to use, copy, modify, relicense,
+and distribute your contribution under any terms.
+
+5. Trademark and branding
+No rights are granted to names, logos, or branding of SkyParkServer.
+
+6. Termination
+Any violation of this license automatically terminates the permissions granted
+under Section 3.
+
+7. Warranty and liability
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES, OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR
+OTHERWISE, ARISING FROM, OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR THE USE
+OR OTHER DEALINGS IN THE SOFTWARE.
