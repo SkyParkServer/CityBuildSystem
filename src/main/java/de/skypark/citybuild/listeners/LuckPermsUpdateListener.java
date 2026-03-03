@@ -5,6 +5,5 @@ import org.bukkit.event.Listener;
 
 public class LuckPermsUpdateListener implements Listener {
 
-    public LuckPermsUpdateListener(CityBuildSystem plugin) {
-    }
+  public LuckPermsUpdateListener(CityBuildSystem plugin) {}
 }

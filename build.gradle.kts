@@ -5,6 +5,7 @@ plugins {
     java
     alias(libs.plugins.freefair.lombok)
     alias(libs.plugins.run.paper)
+    alias(libs.plugins.spotless)
 }
 
 group = "de.skypark"
@@ -26,6 +27,22 @@ dependencies {
 tasks.withType<JavaCompile>().configureEach {
     options.encoding = "UTF-8"
     options.release.set(21)
+}
+
+spotless {
+    java {
+        target("src/main/java/**/*.java")
+        googleJavaFormat("1.35.0")
+        removeUnusedImports()
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
+
+    format("misc") {
+        target("*.md", "*.yml", "*.yaml", "*.properties", ".gitignore", "gradle/*.toml", ".github/**/*.yml")
+        trimTrailingWhitespace()
+        endWithNewline()
+    }
 }
 
 tasks.processResources {

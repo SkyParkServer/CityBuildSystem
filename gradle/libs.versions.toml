@@ -5,6 +5,7 @@ luckperms = "5.4"
 vault = "1.7.1"
 freefair-lombok = "9.2.0"
 run-paper = "3.0.2"
+spotless = "7.2.1"
 
 [libraries]
 paper-api = { module = "io.papermc.paper:paper-api", version.ref = "paper" }
@@ -14,3 +15,4 @@ vault-api = { module = "com.github.MilkBowl:VaultAPI", version.ref = "vault" }
 [plugins]
 freefair-lombok = { id = "io.freefair.lombok", version.ref = "freefair-lombok" }
 run-paper = { id = "xyz.jpenilla.run-paper", version.ref = "run-paper" }
+spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }

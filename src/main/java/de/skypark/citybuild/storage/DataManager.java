@@ -4,18 +4,18 @@ import de.skypark.citybuild.CityBuildSystem;
 
 public class DataManager {
 
-    private final DatabaseManager database;
+  private final DatabaseManager database;
 
-    public DataManager(CityBuildSystem plugin) {
-        this.database = new DatabaseManager(plugin);
-        this.database.initSchema();
-    }
+  public DataManager(CityBuildSystem plugin) {
+    this.database = new DatabaseManager(plugin);
+    this.database.initSchema();
+  }
 
-    public DatabaseManager db() {
-        return database;
-    }
+  public DatabaseManager db() {
+    return database;
+  }
 
-    public void saveAll() {
-        // No-op for MySQL backend
-    }
+  public void saveAll() {
+    // No-op for MySQL backend
+  }
 }

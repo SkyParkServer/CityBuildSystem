@@ -43,7 +43,7 @@ jobs:
         uses: gradle/actions/setup-gradle@342e94ec9aa7226938939f1ad2c761d1245996f5
 
       - name: Build with Gradle
-        run: ./gradlew --no-daemon clean build
+        run: ./gradlew --no-daemon spotlessCheck clean build
 
       - name: Upload plugin artifact
         uses: actions/upload-artifact@v7

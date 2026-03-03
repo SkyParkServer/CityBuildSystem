@@ -8,36 +8,37 @@ import org.bukkit.entity.Player;
 
 public class DelWarpCommand implements CommandExecutor {
 
-    private final CityBuildSystem plugin;
+  private final CityBuildSystem plugin;
 
-    public DelWarpCommand(CityBuildSystem plugin) {
-        this.plugin = plugin;
+  public DelWarpCommand(CityBuildSystem plugin) {
+    this.plugin = plugin;
+  }
+
+  @Override
+  public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+    if (!(sender instanceof Player player)) {
+      plugin.messages().error(sender, "Nur Spieler koennen diesen Befehl nutzen.");
+      return true;
+    }
+    if (!player.hasPermission("cb.warp.del")) {
+      plugin.messages().error(player, "Du hast dazu keine Rechte!");
+      return true;
+    }
+    if (args.length < 1) {
+      plugin.messages().error(player, "Nutze: /delwarp <Name>");
+      return true;
     }
 
-    @Override
-    public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        if (!(sender instanceof Player player)) {
-            plugin.messages().error(sender, "Nur Spieler koennen diesen Befehl nutzen.");
-            return true;
-        }
-        if (!player.hasPermission("cb.warp.del")) {
-            plugin.messages().error(player, "Du hast dazu keine Rechte!");
-            return true;
-        }
-        if (args.length < 1) {
-            plugin.messages().error(player, "Nutze: /delwarp <Name>");
-            return true;
-        }
-
-        String name = args[0].toLowerCase();
-        String serverName = plugin.getConfig().getString("server-name", "citybuild-1");
-        boolean deleted = plugin.warpStore().deleteWarp(serverName, name);
-        if (!deleted) {
-            plugin.messages().error(player, "Warp nicht gefunden.");
-            return true;
-        }
-
-        player.sendMessage(plugin.messages().color("§6§lSkyPark §8» §7Du hast den §b" + name + " §7geloescht."));
-        return true;
+    String name = args[0].toLowerCase();
+    String serverName = plugin.getConfig().getString("server-name", "citybuild-1");
+    boolean deleted = plugin.warpStore().deleteWarp(serverName, name);
+    if (!deleted) {
+      plugin.messages().error(player, "Warp nicht gefunden.");
+      return true;
     }
+
+    player.sendMessage(
+        plugin.messages().color("§6§lSkyPark §8» §7Du hast den §b" + name + " §7geloescht."));
+    return true;
+  }
 }
