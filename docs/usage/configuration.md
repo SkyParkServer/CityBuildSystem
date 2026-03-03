@@ -8,6 +8,9 @@ Zentrale globale Einstellungen:
 - `const.no-perm`: Standard-No-Permission Text
 - Datenbank-Block (`host`, `port`, `database`, `user`, `password`)
 - `server-name`: Kennung fuer servergebundene Daten (z. B. Warps)
+- `update-checker.enabled`: Versionspruefung beim Start an/aus
+- `update-checker.repository`: GitHub Repo fuer den Versionsvergleich
+- `update-checker.timeout-ms`: Timeout fuer GitHub API Request
 
 ## homes.yml
 

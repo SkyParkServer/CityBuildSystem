@@ -9,6 +9,7 @@
 - Speed-Control (1-10)
 - Tresor-System mit 8 Seiten (`/tresor`)
 - Vanish-System (`/v`, `/vanish`)
+- Version-Checker gegen GitHub Releases beim Plugin-Start
 
 ## Homes, Spawn und Warps
 

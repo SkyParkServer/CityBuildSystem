@@ -15,6 +15,7 @@ import de.skypark.citybuild.core.MessageManager;
 import de.skypark.citybuild.core.SpawnManager;
 import de.skypark.citybuild.core.TresorService;
 import de.skypark.citybuild.core.VanishService;
+import de.skypark.citybuild.core.VersionChecker;
 import de.skypark.citybuild.listeners.GlobalSpawnListener;
 import de.skypark.citybuild.listeners.HomeGuiListener;
 import de.skypark.citybuild.listeners.HomeJoinListener;
@@ -59,6 +60,7 @@ public class CityBuildSystem extends JavaPlugin {
   private PlayerDataStore playerData;
   private SpawnManager spawnManager;
   private VanishService vanishService;
+  private VersionChecker versionChecker;
 
   private EnderChestStore enderChestStore;
   private TresorStore tresorStore;
@@ -91,6 +93,7 @@ public class CityBuildSystem extends JavaPlugin {
     this.playerData = new PlayerDataStore(data, settings);
     this.spawnManager = new SpawnManager(this);
     this.vanishService = new VanishService(this);
+    this.versionChecker = new VersionChecker(this);
 
     this.enderChestStore = new EnderChestStore(data);
     this.tresorStore = new TresorStore(data);
@@ -181,6 +184,8 @@ public class CityBuildSystem extends JavaPlugin {
     registerCommand("cb", new CbCommand(this), new CbTabCompleter());
 
     registerBrigadierCommands();
+
+    versionChecker.checkAsync();
   }
 
   @Override

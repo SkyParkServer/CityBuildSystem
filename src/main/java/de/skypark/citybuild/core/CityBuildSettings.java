@@ -26,6 +26,11 @@ public class CityBuildSettings {
     c.addDefault("spawn.cooldown-seconds", c.getInt("const.default-spawn-cooldown-seconds", 5));
     c.addDefault("debug.enabled", false);
 
+    // Update checker defaults
+    c.addDefault("update-checker.enabled", true);
+    c.addDefault("update-checker.repository", "SkyParkServer/CityBuildSystem");
+    c.addDefault("update-checker.timeout-ms", 5000);
+
     c.options().copyDefaults(true);
     plugin.saveConfig();
   }

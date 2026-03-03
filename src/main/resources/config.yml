@@ -11,6 +11,11 @@ spawn:
 debug:
   enabled: false
 
+update-checker:
+  enabled: true
+  repository: "SkyParkServer/CityBuildSystem"
+  timeout-ms: 5000
+
 mysql:
   host: "127.0.0.1"
   port: 3306
