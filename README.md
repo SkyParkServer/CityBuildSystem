@@ -26,6 +26,14 @@ By contributing, you agree that your changes can be used, modified, and relicens
 
 See `CONTRIBUTING.md` for workflow details.
 
+## Documentation
+
+- Source files: `docs/`
+- Site config: `mkdocs.yml`
+- GitHub Pages deploy workflow: `.github/workflows/docs.yml`
+
+After enabling GitHub Pages (Source: GitHub Actions), docs are published automatically on pushes affecting docs.
+
 ## License
 
 This project is source-available and private.

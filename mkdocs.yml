@@ -1,0 +1,29 @@
+site_name: CityBuildSystem Docs
+site_description: Dokumentation fuer das SkyPark CityBuildSystem Plugin
+site_url: https://skyparkserver.github.io/CityBuildSystem/
+repo_url: https://github.com/SkyParkServer/CityBuildSystem
+repo_name: SkyParkServer/CityBuildSystem
+
+theme:
+  name: material
+  language: de
+  features:
+    - navigation.tabs
+    - navigation.sections
+    - content.code.copy
+
+markdown_extensions:
+  - tables
+  - toc:
+      permalink: true
+  - admonition
+  - pymdownx.highlight
+  - pymdownx.superfences
+
+nav:
+  - Start: index.md
+  - Getting Started: getting-started.md
+  - Architektur: architecture.md
+  - Konfiguration: configuration.md
+  - Commands: commands.md
+  - Entwicklung: development.md
