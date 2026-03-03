@@ -2,13 +2,10 @@
 
 Willkommen zur technischen Dokumentation des `CityBuildSystem` Plugins.
 
-Diese Doku deckt den aktuellen Stand des Plugins ab:
+Diese Doku ist in zwei Hauptbereiche getrennt:
 
-- Build- und Entwicklungssetup
-- Systemarchitektur
-- Konfigurationen
-- Command-Referenz
-- Beitrag zum Projekt
+- `Usage`: Installation, Konfiguration, Commands und Feature-Verhalten
+- `Development`: Setup fuer Entwickler, Struktur, Konventionen und CI/CD
 
 ## Tech Stack
 
@@ -23,6 +20,11 @@ Diese Doku deckt den aktuellen Stand des Plugins ab:
 - Keine Caches fuer wirtschaftliche/spielerbezogene Werte
 - Synchrone DB-Operationen (Main-Thread) nach Projektvorgabe
 - Nachrichten deutsch und hardcoded mit Legacy `&`-Farbcodes
+
+## Schnellstart
+
+- Fuer Betreiber: `Usage -> Voraussetzungen und Setup`
+- Fuer Entwickler: `Development -> Dev Setup`
 
 ## Links
 

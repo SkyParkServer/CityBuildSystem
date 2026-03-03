@@ -7,23 +7,54 @@ repo_name: SkyParkServer/CityBuildSystem
 theme:
   name: material
   language: de
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: orange
+      accent: amber
+      toggle:
+        icon: material/weather-night
+        name: Zu Dark Mode wechseln
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: orange
+      accent: amber
+      toggle:
+        icon: material/weather-sunny
+        name: Zu Light Mode wechseln
   features:
     - navigation.tabs
     - navigation.sections
+    - navigation.expand
+    - content.code.annotate
     - content.code.copy
+    - search.highlight
+    - search.suggest
 
 markdown_extensions:
   - tables
   - toc:
       permalink: true
   - admonition
+  - pymdownx.details
   - pymdownx.highlight
   - pymdownx.superfences
 
+extra_css:
+  - assets/stylesheets/extra.css
+
 nav:
   - Start: index.md
-  - Getting Started: getting-started.md
-  - Architektur: architecture.md
-  - Konfiguration: configuration.md
-  - Commands: commands.md
-  - Entwicklung: development.md
+  - Usage:
+      - Ueberblick: usage/index.md
+      - Voraussetzungen und Setup: usage/requirements-setup.md
+      - Konfiguration: usage/configuration.md
+      - Commands: usage/commands.md
+      - Features: usage/features.md
+  - Development:
+      - Ueberblick: development/index.md
+      - Dev Setup: development/setup.md
+      - Projektstruktur: development/structure.md
+      - Konventionen: development/conventions.md
+      - Libraries und Integrationen: development/libraries.md
+      - CI/CD und Releases: development/ci-cd.md

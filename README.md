@@ -31,6 +31,9 @@ See `CONTRIBUTING.md` for workflow details.
 - Source files: `docs/`
 - Site config: `mkdocs.yml`
 - GitHub Pages deploy workflow: `.github/workflows/docs.yml`
+- Struktur:
+  - `Usage`: Betrieb, Setup, Konfiguration, Commands, Features
+  - `Development`: Setup, Struktur, Konventionen, Libraries, CI/CD
 
 After enabling GitHub Pages (Source: GitHub Actions), docs are published automatically on pushes affecting docs.
 

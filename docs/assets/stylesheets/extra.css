@@ -1,0 +1,22 @@
+:root {
+  --md-primary-fg-color: #f08a24;
+  --md-primary-fg-color--light: #f4a85d;
+  --md-primary-fg-color--dark: #bf6514;
+  --md-accent-fg-color: #ffb020;
+}
+
+.md-typeset h1,
+.md-typeset h2,
+.md-typeset h3 {
+  letter-spacing: 0.01em;
+}
+
+.md-typeset .admonition,
+.md-typeset details {
+  border-radius: 0.5rem;
+}
+
+.md-typeset table:not([class]) {
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
