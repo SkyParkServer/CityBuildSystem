@@ -3,7 +3,7 @@ paper = "1.21.11-R0.1-SNAPSHOT"
 minecraft = "1.21.11"
 luckperms = "5.4"
 vault = "1.7.1"
-freefair-lombok = "8.6"
+freefair-lombok = "9.2.0"
 run-paper = "3.0.2"
 
 [libraries]
