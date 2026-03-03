@@ -14,4 +14,4 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "CityBuildSystem2"
+rootProject.name = "CityBuildSystem"

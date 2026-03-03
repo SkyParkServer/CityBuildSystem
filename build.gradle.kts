@@ -8,7 +8,7 @@ plugins {
 }
 
 group = "de.skypark"
-version = "1.0.6-SNAPSHOT"
+version = "1.0.0"
 
 java {
     toolchain {
