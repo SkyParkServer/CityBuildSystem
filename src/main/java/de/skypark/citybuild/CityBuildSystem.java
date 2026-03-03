@@ -13,6 +13,7 @@ import de.skypark.citybuild.core.HomeConfig;
 import de.skypark.citybuild.core.HomeService;
 import de.skypark.citybuild.core.MessageManager;
 import de.skypark.citybuild.core.SpawnManager;
+import de.skypark.citybuild.core.TresorService;
 import de.skypark.citybuild.listeners.GlobalSpawnListener;
 import de.skypark.citybuild.listeners.HomeGuiListener;
 import de.skypark.citybuild.listeners.HomeJoinListener;
@@ -23,6 +24,7 @@ import de.skypark.citybuild.listeners.PlayerDataListener;
 import de.skypark.citybuild.listeners.RainbowArmorListener;
 import de.skypark.citybuild.listeners.SharedEnderChestListener;
 import de.skypark.citybuild.listeners.TablistJoinListener;
+import de.skypark.citybuild.listeners.TresorListener;
 import de.skypark.citybuild.storage.*;
 import io.papermc.paper.command.brigadier.CommandSourceStack;
 import io.papermc.paper.command.brigadier.Commands;
@@ -56,6 +58,7 @@ public class CityBuildSystem extends JavaPlugin {
   private SpawnManager spawnManager;
 
   private EnderChestStore enderChestStore;
+  private TresorStore tresorStore;
   private WarpStore warpStore;
 
   private MessagingStore messagingStore;
@@ -67,6 +70,7 @@ public class CityBuildSystem extends JavaPlugin {
 
   private HomeConfig homeConfig;
   private HomeService homes;
+  private TresorService tresorService;
   private final Map<String, CommandBinding> commandBindings = new LinkedHashMap<>();
 
   @Override
@@ -85,6 +89,7 @@ public class CityBuildSystem extends JavaPlugin {
     this.spawnManager = new SpawnManager(this);
 
     this.enderChestStore = new EnderChestStore(data);
+    this.tresorStore = new TresorStore(data);
     this.warpStore = new WarpStore(data);
 
     this.messagingStore = new MessagingStore(data);
@@ -96,10 +101,12 @@ public class CityBuildSystem extends JavaPlugin {
 
     this.homeConfig = new HomeConfig(this);
     this.homes = new HomeService(this, homeConfig);
+    this.tresorService = new TresorService(this, tresorStore);
 
     // Events
     getServer().getPluginManager().registerEvents(new PlayerDataListener(this, playerData), this);
     getServer().getPluginManager().registerEvents(new SharedEnderChestListener(this), this);
+    getServer().getPluginManager().registerEvents(new TresorListener(tresorService), this);
     getServer().getPluginManager().registerEvents(new HomeJoinListener(), this);
     getServer().getPluginManager().registerEvents(new HomeGuiListener(this, homes), this);
     getServer().getPluginManager().registerEvents(new InvseeReadOnlyListener(this), this);
@@ -134,6 +141,7 @@ public class CityBuildSystem extends JavaPlugin {
     EnderChestCommand ec = new EnderChestCommand(this);
     registerCommand("enderchest", ec);
     registerCommand("ec", ec);
+    registerCommand("tresor", new TresorCommand(this, tresorService));
     registerCommand("speed", new SpeedCommand(this));
     registerCommand("hat", new HatCommand(this));
     registerCommand("setwarp", new SetWarpCommand(this));

@@ -79,6 +79,15 @@ public class DatabaseManager {
             """);
       st.executeUpdate(
           """
+                CREATE TABLE IF NOT EXISTS cb_tresor (
+                  uuid VARCHAR(36) NOT NULL,
+                  page INT NOT NULL,
+                  contents MEDIUMTEXT NOT NULL,
+                  PRIMARY KEY (uuid, page)
+                ) CHARACTER SET utf8mb4
+            """);
+      st.executeUpdate(
+          """
                 CREATE TABLE IF NOT EXISTS cb_warps (
                   server_name VARCHAR(64) NOT NULL,
                   warp_name VARCHAR(32) NOT NULL,

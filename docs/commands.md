@@ -9,6 +9,7 @@ Kurze Referenz der wichtigsten Commands.
 - `/repair`
 - `/wetter <regen|gewitter|sonne>`
 - `/hat`
+- `/tresor`
 
 ## Homes / Teleport
 

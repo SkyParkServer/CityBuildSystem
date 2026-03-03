@@ -12,7 +12,22 @@ Die Command-Referenz ist nach Rollen aufgeteilt.
 | `/wetter <regen\|gewitter\|sonne>` | Weltwetter setzen | `cb.wetter.use` |
 | `/hat` | Item aus Hand als Helm | `cb.hat.use` |
 | `/ec`, `/enderchest` | Serveruebergreifende Enderchest | `cb.enderchest.use` |
+| `/tresor` | Serveruebergreifender Tresor (8 Seiten) | `cb.tresor.use` |
 | `/speed <1-10>` | Lauf-/Fluggeschwindigkeit | `cb.speed.use` |
+
+### Tresor Permissions
+
+| Permission | Beschreibung |
+|---|---|
+| `cb.tresor.use` | Oeffnet den Tresor |
+| `cb.tresor.seite.1` | Seite 1 freischalten |
+| `cb.tresor.seite.2` | Seite 2 freischalten |
+| `cb.tresor.seite.3` | Seite 3 freischalten |
+| `cb.tresor.seite.4` | Seite 4 freischalten |
+| `cb.tresor.seite.5` | Seite 5 freischalten |
+| `cb.tresor.seite.6` | Seite 6 freischalten |
+| `cb.tresor.seite.7` | Seite 7 freischalten |
+| `cb.tresor.seite.8` | Seite 8 freischalten |
 
 ## Homes & Teleport
 

@@ -56,6 +56,9 @@ commands:
     description: Open shared ender chest (MySQL)
     aliases: [ec]
     permission: cb.enderchest.use
+  tresor:
+    description: Open shared multi-page vault (MySQL)
+    permission: cb.tresor.use
   speed:
     description: Set your movement speed (2-10)
     permission: cb.speed.use

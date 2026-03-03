@@ -7,6 +7,7 @@
 - Wettersteuerung per Command
 - Hat-System (Item als Helm)
 - Speed-Control (1-10)
+- Tresor-System mit 8 Seiten (`/tresor`)
 
 ## Homes, Spawn und Warps
 
@@ -34,5 +35,13 @@
 
 ## Netzwerk-Sync
 
-- Enderchest, PM-Zustand und weitere Stores datenbankbasiert
+- Enderchest, Tresor, PM-Zustand und weitere Stores datenbankbasiert
 - Keine Cache-Schicht fuer spielrelevante Werte
+
+## Tresor Details
+
+- GUI mit 54 Slots, orangem Rahmen, Barriere unten mittig und Pfeilen fuer Seitenwechsel
+- 8 Seiten mit Einzel-Permissions `cb.tresor.seite.1` bis `cb.tresor.seite.8`
+- Gesperrte Seiten sind mit rotem Glas belegt
+- Oeffnungs-Cooldown von 10 Sekunden pro Spieler
+- Vollstaendig MySQL-basiert und serveruebergreifend synchron
