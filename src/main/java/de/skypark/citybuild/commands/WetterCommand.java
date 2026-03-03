@@ -1,30 +1,33 @@
 package de.skypark.citybuild.commands;
 
 import de.skypark.citybuild.CityBuildSystem;
-import org.bukkit.command.*;
+import de.skypark.citybuild.commands.framework.AbstractCommand;
+import java.util.List;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-public class WetterCommand implements CommandExecutor {
-  private final CityBuildSystem plugin;
+public class WetterCommand extends AbstractCommand {
+
+  private static final List<String> MODES = List.of("regen", "gewitter", "sonne");
 
   public WetterCommand(CityBuildSystem plugin) {
-    this.plugin = plugin;
+    super(plugin);
   }
 
   @Override
   public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-    if (!(sender instanceof Player player)) {
-      plugin.messages().error(sender, "Only players can run this command.");
+    Player player = requirePlayer(sender);
+    if (player == null) {
       return true;
     }
 
-    if (!player.hasPermission("cb.wetter.use")) {
-      plugin.messages().error(player, plugin.settings().noPermissionMessage());
+    if (!requirePermission(player, "cb.wetter.use")) {
       return true;
     }
 
     if (args.length < 1) {
-      plugin.messages().error(player, "Usage: /wetter <regen|gewitter|sonne>");
+      plugin.messages().error(player, "Nutze: /wetter <regen|gewitter|sonne>");
       return true;
     }
 
@@ -48,7 +51,13 @@ public class WetterCommand implements CommandExecutor {
       return true;
     }
 
-    plugin.messages().error(player, "Usage: /wetter <regen|gewitter|sonne>");
+    plugin.messages().error(player, "Nutze: /wetter <regen|gewitter|sonne>");
     return true;
+  }
+
+  @Override
+  public List<String> onTabComplete(
+      CommandSender sender, Command command, String alias, String[] args) {
+    return completeFirstArg(args, MODES);
   }
 }

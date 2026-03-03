@@ -6,3 +6,8 @@
 /build/
 /run/
 AGENTS.md
+.classpath
+.factorypath
+.project
+.settings/
+/bin/
