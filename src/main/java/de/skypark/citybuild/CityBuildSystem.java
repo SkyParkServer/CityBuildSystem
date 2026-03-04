@@ -9,6 +9,8 @@ import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import de.skypark.citybuild.commands.*;
 import de.skypark.citybuild.core.CityBuildSettings;
+import de.skypark.citybuild.core.FarmConfig;
+import de.skypark.citybuild.core.FarmMenuService;
 import de.skypark.citybuild.core.HomeConfig;
 import de.skypark.citybuild.core.HomeService;
 import de.skypark.citybuild.core.MessageManager;
@@ -16,6 +18,7 @@ import de.skypark.citybuild.core.SpawnManager;
 import de.skypark.citybuild.core.TresorService;
 import de.skypark.citybuild.core.VanishService;
 import de.skypark.citybuild.core.VersionChecker;
+import de.skypark.citybuild.listeners.FarmMenuListener;
 import de.skypark.citybuild.listeners.GlobalSpawnListener;
 import de.skypark.citybuild.listeners.HomeGuiListener;
 import de.skypark.citybuild.listeners.HomeJoinListener;
@@ -75,6 +78,8 @@ public class CityBuildSystem extends JavaPlugin {
 
   private HomeConfig homeConfig;
   private HomeService homes;
+  private FarmConfig farmConfig;
+  private FarmMenuService farmMenuService;
   private TresorService tresorService;
   private final Map<String, CommandBinding> commandBindings = new LinkedHashMap<>();
 
@@ -108,6 +113,8 @@ public class CityBuildSystem extends JavaPlugin {
 
     this.homeConfig = new HomeConfig(this);
     this.homes = new HomeService(this, homeConfig);
+    this.farmConfig = new FarmConfig(this);
+    this.farmMenuService = new FarmMenuService(this, farmConfig);
     this.tresorService = new TresorService(this, tresorStore);
 
     // Events
@@ -116,6 +123,7 @@ public class CityBuildSystem extends JavaPlugin {
     getServer().getPluginManager().registerEvents(new TresorListener(tresorService), this);
     getServer().getPluginManager().registerEvents(new HomeJoinListener(), this);
     getServer().getPluginManager().registerEvents(new HomeGuiListener(this, homes), this);
+    getServer().getPluginManager().registerEvents(new FarmMenuListener(farmMenuService), this);
     getServer().getPluginManager().registerEvents(new InvseeReadOnlyListener(this), this);
     getServer().getPluginManager().registerEvents(new RainbowArmorListener(this), this);
     getServer().getPluginManager().registerEvents(new GlobalSpawnListener(this), this);
@@ -133,6 +141,7 @@ public class CityBuildSystem extends JavaPlugin {
     registerCommand("homes", new HomesCommand(this, homes));
     registerCommand("sethome", new SetHomeCommand(this, homes));
     registerCommand("delhome", new DelHomeCommand(this, homes));
+    registerCommand("farm", new FarmCommand(this, farmMenuService));
 
     // Commands - economy
     registerCommand("balance", new BalanceCommand(this));
@@ -185,11 +194,14 @@ public class CityBuildSystem extends JavaPlugin {
 
     registerBrigadierCommands();
 
+    getServer().getMessenger().registerOutgoingPluginChannel(this, "BungeeCord");
+
     versionChecker.checkAsync();
   }
 
   @Override
   public void onDisable() {
+    getServer().getMessenger().unregisterOutgoingPluginChannel(this, "BungeeCord");
     data.saveAll();
   }
 

@@ -3,7 +3,7 @@ version: ${version}
 main: de.skypark.citybuild.CityBuildSystem
 api-version: 1.21
 depend: [Vault]
-softdepend: [LuckPerms, PlotSquared]
+softdepend: [LuckPerms, PlotSquared, Maintenance]
 libraries:
   - com.mysql:mysql-connector-j:8.4.0
 
@@ -22,6 +22,10 @@ commands:
   homes:
     description: Open homes menu
     permission: cb.home.use
+  farm:
+    description: Open farm world selector menu
+    aliases: [farmwelt]
+    permission: cb.farm.use
   sethome:
     description: Set a home
     permission: cb.home.set.use

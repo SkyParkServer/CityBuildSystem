@@ -8,6 +8,7 @@
 - Hat-System (Item als Helm)
 - Speed-Control (1-10)
 - Tresor-System mit 8 Seiten (`/tresor`)
+- Farmwelt-Selector (`/farm`, `/farmwelt`) mit 54er GUI, orangem Rand und Schliessen-Barriere
 - Vanish-System (`/v`, `/vanish`)
 - Version-Checker gegen GitHub Releases beim Plugin-Start
 
@@ -40,6 +41,7 @@
 
 - Enderchest, Tresor, PM-Zustand und weitere Stores datenbankbasiert
 - Keine Cache-Schicht fuer spielrelevante Werte
+- Farm-Menu blendet offline Server automatisch aus und markiert Wartungsstatus
 
 ## Vanish Details
 

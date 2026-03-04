@@ -13,6 +13,7 @@ Die Command-Referenz ist nach Rollen aufgeteilt.
 | `/hat` | Item aus Hand als Helm | `cb.hat.use` |
 | `/ec`, `/enderchest` | Serveruebergreifende Enderchest | `cb.enderchest.use` |
 | `/tresor` | Serveruebergreifender Tresor (8 Seiten) | `cb.tresor.use` |
+| `/farm`, `/farmwelt` | Farmwelt-Menu mit Serverauswahl | `cb.farm.use` |
 | `/v`, `/vanish` | Eigenen Vanish toggeln | `ch.vanish.use` |
 | `/speed <1-10>` | Lauf-/Fluggeschwindigkeit | `cb.speed.use` |
 
