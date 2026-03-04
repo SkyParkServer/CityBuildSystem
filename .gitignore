@@ -5,7 +5,6 @@
 /.gradle/
 /build/
 /run/
-AGENTS.md
 .classpath
 .factorypath
 .project
